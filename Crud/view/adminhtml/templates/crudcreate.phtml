@@ -1,21 +1,11 @@
 <div>
     <h1> create </h1>
-    <form action="">
-        <input type="text">
+
+    <form action="<?php echo $this->getUrl("hello/add/index")?>" method="post">
+        <div class="form-group">
+            <label for="name">Add your name:</label>
+            <input type="name" class="input" name="name" id="name">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
     </form>
-    <h2>text</h2>
-    <p>
-        <?php
-        /* Using magic getsetters */
-        // echo $this->getSampleText();
-        ?>
-    </p>
-    <p>
-        <strong>
-            <?php
-            /* retrieving sample cfg value */
-            //  echo $this->getCfgSample();
-            ?>
-        </strong>
-    </p>
 </div>
