@@ -39,16 +39,11 @@ class Index extends \Magento\Backend\App\Action
     public function execute()
     {
         /** @var \MAgento\Backend\Model\View\Result\Page $resultPage */
-        $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Tbb_Crud::crudCreate');
-        /*$resultPage->addBreadcrumb(__('System'), __('System'));  This also changes page title in tab name
-        $resultPage->addBreadcrumb(__('SampleTwo'), __('SampleTwo'));*/
-        $resultPage->getConfig()->getTitle()->prepend(__('Crud Create')); // Changing the page title
-        // You will notice that this block 'Two' is defined in the template file
-        //$resultPage->getLayout()->getBlock('Two')->setSampleText('This text is passed'); // Here we use Magento2's Magic getsetters
-        // Retrieving config value and passing it to template
-        // $cfg_text = $this->scopeConfig->getValue('adminsample/txt/textsample');
-        //  $resultPage->getLayout()->getBlock('Two')->setCfgSample($cfg_text);
+      $resultPage = $this->resultPageFactory->create();
+       $resultPage->setActiveMenu('Tbb_Crud::crudCreate');
+      $resultPage->getConfig()->getTitle()->prepend(__('Crud Create')); // Changing the page title
+
         return $resultPage;
+
     }
 }
