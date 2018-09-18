@@ -15,6 +15,7 @@ class Result extends \Magento\Framework\View\Element\Template
     }
 
 
+
     public function getPostCollection(){
         $post = $this->_postFactory->create();
         return $post->getCollection();

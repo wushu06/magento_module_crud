@@ -3,5 +3,6 @@
     <menu>
         <add id="Tbb_Crud::crudMenu" title="Tbb Crud" module="Tbb_Crud" sortOrder="500"  resource="Tbb_Crud::crudMenu"/>
         <add id="Tbb_Crud::crudCreate" title="Crud Create" module="Tbb_Crud" sortOrder="200" parent="Tbb_Crud::crudMenu" action="AdminCrud/crudCreate" resource="Tbb_Crud::crudCreate"/>
+        <add id="Tbb_Crud::crudResult" title="Crud Result" module="Tbb_Crud" sortOrder="300" parent="Tbb_Crud::crudMenu" action="AdminCrud/crudCreate/result" resource="Tbb_Crud::crudResult"/>
     </menu>
 </config>

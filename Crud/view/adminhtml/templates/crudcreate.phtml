@@ -1,33 +1,63 @@
-<div>
-    <h1> create </h1>
+<?php
 
-    <form class="form" action="result" method="post">
+/**
+ * @var \Mageplaza\HelloWorld\Block\Display $block
+ */
+echo $block->sayHello();
 
-        <fieldset class="fieldset">
-            <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Test Form') ?></span></legend><br>
-            <div class="field required">
-                <label for="number" class="label">
-                    <span><?php /* @escapeNotVerified */ echo __('Input') ?></span>
-                </label>
 
-                <div class="control">
-                    <input type="text" id="number"
-                           name="number"
-                           class="input-text">
-                </div>
-            </div>
-        </fieldset>
+?>
 
-        <div class="actions-toolbar">
-            <div class="primary">
-                <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>">
-                    <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
-                </button>
+<style>
+    table {  font-family: arial, sans-serif;  border-collapse: collapse;  width: 100%;  margin-top: 30px;}
+    td, th {  border: 1px solid #dddddd;  text-align: left;  padding: 8px;  }
+    tr:nth-child(even) { background-color: #dddddd; }
+    .post-id{width:2%} .post-name{width:30%}
+
+</style>
+
+<form class="form" action="<?php echo $this->getUrl('/result'); ?>" method="post">
+
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Test Form') ?></span></legend><br>
+        <div class="field required">
+            <label for="number" class="label">
+                <span><?php /* @escapeNotVerified */ echo __('Input') ?></span>
+            </label>
+
+            <div class="control">
+                <input type="text" id="number"
+                       name="number"
+                       class="input-text">
             </div>
         </div>
+    </fieldset>
 
-    </form>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>">
+                <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+            </button>
+        </div>
+    </div>
+
+</form>
 
 
+<table>
+    <tr>
+        <th class="post-id">Id</th>
+        <th class="post-name">Name</th>
+    </tr>
+    <?php
+    foreach ($block->getPostCollection() as $key=>$post){
+        echo '<tr>
+                    <td>'.$post->getId().'</td>
+                    <td>'.$post->getName().'</td>
+                  </tr>';
+    }
+    ?>
+</table>
 
-</div>
+</body>
+</html>

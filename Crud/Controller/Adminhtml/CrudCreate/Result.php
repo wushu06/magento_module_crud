@@ -1,30 +1,38 @@
 <?php
 
-namespace Tbb\Crud\Controller\Index;
+namespace Tbb\Crud\Controller\Adminhtml\CrudCreate;
 
-
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
-use Magento\Framework\View\Element\Messages;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
-use Tbb\Crud\Hmu\InsertProduct;
+use Magento\Framework\App\Config\ScopeConfigInterface; // Needed to retrieve config values
 
-class Result extends Action
+
+use Magento\Framework\Controller\ResultFactory;
+
+class Result extends \Magento\Backend\App\Action
 {
-    /** @var PageFactory $resultPageFactory */
+    /**
+     * @var PageFactory
+     */
     protected $resultPageFactory;
 
     /**
-     * Result constructor.
-     * @param Context $context
-     * @param PageFactory $pageFactory
+     * @var scopeConfig
+     * Needed to retrieve config values
      */
-    public function __construct(Context $context, PageFactory $pageFactory)
-    {
-        $this->resultPageFactory = $pageFactory;
-        parent::__construct($context);
-    }
+    protected $scopeConfig;
 
+    /**
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     */
+    public function __construct(
+        Context $context,
+        PageFactory $resultPageFactory
+    ) {
+        parent::__construct($context);
+        $this->resultPageFactory = $resultPageFactory;
+    }
 
     public function deleteData($value)
     {
@@ -32,7 +40,7 @@ class Result extends Action
 
         $this->_resources = \Magento\Framework\App\ObjectManager::getInstance()
             ->get('Magento\Framework\App\ResourceConnection');
-        $connection= $this->_resources->getConnection();
+        $connection = $this->_resources->getConnection();
 
         $themeTable = $this->_resources->getTableName('tbb_crud');
         $sql = "DELETE FROM $themeTable WHERE id=$value";
@@ -41,6 +49,7 @@ class Result extends Action
 
 
     }
+
     public function insertData($number)
     {
 
@@ -51,22 +60,21 @@ class Result extends Action
             $msg = $number . ' Has been successfully insert to database';
 
 
-        }else{
+        } else {
             $msg = 'You didn\'t enter a number!';
         }
         return $msg;
 
     }
 
-
-
     /**
-     * The controller action
-     *
-     * @return \Magento\Framework\View\Result\Page
+     * Index Action*
+     * @return void
      */
     public function execute()
     {
+
+
         $number = $this->getRequest()->getParam('number');
         $value = $this->getRequest()->getParam('id');
 
@@ -95,5 +103,6 @@ class Result extends Action
 
 
         return $resultPage;
+
     }
 }
